@@ -1,0 +1,15 @@
+{
+  "name": "fingame",
+  "version": "1.0.0",
+  "description": "A memory game for Finicity DC booth",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Paul Milham",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  }
+}
