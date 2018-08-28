@@ -3,6 +3,11 @@
 const app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
 document.body.appendChild(app.view);
 
+const background = PIXI.Sprite.fromImage("assets/img/Background.jpg");
+background.width = app.screen.width;
+background.height = app.screen.height;
+app.stage.addChild(background);
+
 // create a new Sprite from an image path
 const bunny = PIXI.Sprite.fromImage("assets/img/icons/Balloons.png");
 
