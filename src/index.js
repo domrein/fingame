@@ -23,7 +23,7 @@ const gotoScene = sceneName => {
       .start();
 
     gotoScene(sceneFlow[sceneName].next);
-  });
+  }, app);
 
   scene.graphic.x = app.screen.width;
   app.stage.addChild(scene.graphic);
