@@ -6,3 +6,4 @@ Memory game for Finicity's booth
 - [ ] incorrect choice animation
 - [x] maintain icon aspect ratio when scaling
 - [ ] display list of correctly chosen icons on results
+- [ ] use correct font for text
