@@ -5,10 +5,22 @@ export default class ResultsScene {
 
     this.graphic = new PIXI.Container();
 
-    const titleText = new PIXI.Text("This is the results!");
+    const titleText = new PIXI.Text("Great job!");
     titleText.x = 30;
     titleText.y = 90;
     this.graphic.addChild(titleText);
+
+    const correctText = new PIXI.Text(`You got ${completeData.correct} correct`);
+    correctText.x = 30;
+    correctText.y = 120;
+    this.graphic.addChild(correctText);
+
+    const scoreText = new PIXI.Text(`You scored ${completeData.score}`);
+    scoreText.x = 30;
+    scoreText.y = 150;
+    this.graphic.addChild(scoreText);
+
+    // TODO: display all icons of things you got correct
 
     const loseText = new PIXI.Text("Touch to finish");
     loseText.x = 30;
