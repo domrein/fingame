@@ -1,5 +1,6 @@
 export default class ResultsScene {
-  constructor(completed) {
+  constructor(completed, app, completeData) {
+    console.log(completeData);
     this.completed = completed;
 
     this.graphic = new PIXI.Container();

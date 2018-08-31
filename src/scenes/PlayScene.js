@@ -51,6 +51,7 @@ export default class PlayScene {
   }
 
   showLevel() {
+    const startTime = Date.now();
     const icons = [];
     this.chosenIcons.forEach(i => icons.push(new Icon(i, false, globals.cellSize)));
 
@@ -92,10 +93,19 @@ export default class PlayScene {
         // console.log(`touched in play scene fresh: ${icon.fresh}`);
         if (icon.fresh) {
           this.chosenIcons.push(icon.name);
+
+          this.correct++;
+          let speedBonus = Math.round(100 - (Date.now() - startTime) / 50);
+          if (speedBonus < 0) {
+            speedBonus = 0;
+          }
+          this.score += 50 + speedBonus;
+          this.updateLabels();
+
           this.clearLevel(icons);
         }
         else {
-          this.completed();
+          this.completed({correct: this.correct, score: this.score, correctIcons: this.chosenIcons});
         }
       });
       this.graphic.addChild(icon.graphic);
@@ -116,8 +126,6 @@ export default class PlayScene {
       });
     });
     // show next level
-    this.correct++;
-    this.updateLabels();
     setTimeout(() => {
       this.showLevel();
     }, 500);

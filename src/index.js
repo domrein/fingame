@@ -24,16 +24,16 @@ else {
 }
 
 // switches scenes
-const gotoScene = sceneName => {
-  const scene = new sceneFlow[sceneName].class(() => {
+const gotoScene = (sceneName, prevSceneCompleteData) => {
+  const scene = new sceneFlow[sceneName].class(completeData => {
     new TWEEN.Tween(scene.graphic)
       .to({x: -app.screen.width}, 1500)
       .easing(TWEEN.Easing.Quadratic.Out)
       .onComplete(() => app.stage.removeChild(scene.graphic))
       .start();
 
-    gotoScene(sceneFlow[sceneName].next);
-  }, app);
+    gotoScene(sceneFlow[sceneName].next, completeData);
+  }, app, prevSceneCompleteData);
 
   scene.graphic.x = app.screen.width;
   app.stage.addChild(scene.graphic);
