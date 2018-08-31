@@ -6,13 +6,18 @@ export default class Icon {
     this.fresh = fresh;
 
     this.graphic = new PIXI.Sprite(loader.textures.icons[name]);
-    this.graphic.width = size;
-    this.graphic.height = size;
+    let scale = 1;
+    if (this.graphic.width > this.graphic.height) {
+      scale = size / this.graphic.width;
+    }
+    else {
+      scale = size / this.graphic.height;
+    }
+    this.graphic.width = size * scale;
+    this.graphic.height = size * scale;
     this.graphic.interactive = true;
     this.graphic.buttonMode = true;
     this.graphic.anchor.set(0.5);
-
-    // this.graphic.on('pointerdown', () => console.log(`fresh: ${this.fresh}`));
   }
 
   appear() {
