@@ -82,14 +82,11 @@ export default class PlayScene {
       cellsAvailable.splice(index, 1);
 
       // TODO: put icons on grid
-      const destY = cell.y * globals.cellSize + gridTop;
-      icon.graphic.x = cell.x * globals.cellSize + gridLeft;
-      icon.graphic.y = destY - this.app.screen.height;
-
-      new TWEEN.Tween(icon.graphic)
-        .to({y: destY}, 1500 + Math.floor(Math.random() * 500))
-        .easing(TWEEN.Easing.Back.Out)
-        .start();
+      const destX = cell.x * globals.cellSize + gridLeft + globals.cellSize / 2;
+      const destY = cell.y * globals.cellSize + gridTop + globals.cellSize / 2;
+      icon.graphic.x = destX;
+      icon.graphic.y = destY;
+      icon.appear();
 
       icon.graphic.on('pointerdown', () => {
         // console.log(`touched in play scene fresh: ${icon.fresh}`);
@@ -113,10 +110,16 @@ export default class PlayScene {
   clearLevel(icons) {
     // tween all old icons off screen
     // kill old icons
-    icons.forEach(i => this.graphic.removeChild(i.graphic));
+    icons.forEach(i => {
+      i.disappear(() => {
+        this.graphic.removeChild(i.graphic);
+      });
+    });
     // show next level
     this.correct++;
     this.updateLabels();
-    this.showLevel();
+    setTimeout(() => {
+      this.showLevel();
+    }, 500);
   }
 }
