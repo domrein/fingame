@@ -1,9 +1,10 @@
+import * as globals from "./globals.js";
 import * as loader from "./loader.js";
 import TitleScene from "./scenes/TitleScene.js";
 import PlayScene from "./scenes/PlayScene.js";
 import ResultsScene from "./scenes/ResultsScene.js";
 
-const app = new PIXI.Application(800, 600, {backgroundColor : 0x1099bb});
+const app = new PIXI.Application(window.innerWidth, window.innerHeight, {backgroundColor : 0x1099bb});
 document.body.appendChild(app.view);
 const loadingText = new PIXI.Text("Loading...");
 app.stage.addChild(loadingText);
@@ -14,6 +15,15 @@ const sceneFlow = {
   results: {class: ResultsScene, next: "title"},
 };
 
+// calc cell size
+if (app.screen.width / app.screen.height > globals.gridWidth / globals.gridHeight) {
+  globals.setCellSize(app.screen.height / globals.gridHeight);
+}
+else {
+  globals.setCellSize(app.screen.width / globals.gridWidth);
+}
+
+// switches scenes
 const gotoScene = sceneName => {
   const scene = new sceneFlow[sceneName].class(() => {
     new TWEEN.Tween(scene.graphic)
@@ -34,6 +44,7 @@ const gotoScene = sceneName => {
     .start();
 }
 
+// preload assets and start app
 loader.load(() => {
   app.stage.removeChild(loadingText);
 

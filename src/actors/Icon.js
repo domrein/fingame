@@ -10,6 +10,6 @@ export default class Icon {
     this.graphic.height = size;
     this.graphic.interactive = true;
     this.graphic.buttonMode = true;
-    this.graphic.on('pointerdown', () => console.log(`fresh: ${this.fresh}`));
+    // this.graphic.on('pointerdown', () => console.log(`fresh: ${this.fresh}`));
   }
 }
