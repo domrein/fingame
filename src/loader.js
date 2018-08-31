@@ -9,7 +9,6 @@ export const icons = [
   {name: "capitol", file: "Capitol"},
   {name: "cards", file: "Cards"},
   {name: "cash", file: "Cash"},
-  {name: "check", file: "Check"},
   {name: "circleGraph", file: "Circle_Graph"},
   {name: "converse", file: "Converse"},
   {name: "cour", file: "Cour"},
@@ -31,18 +30,22 @@ export const icons = [
   {name: "supreme", file: "Supreme"},
   {name: "washington", file: "Washington"},
   {name: "whitehouse", file: "Whitehouse"},
-  {name: "wrong", file: "Wrong"},
 ];
 
 export const load = complete => {
   PIXI.loader.add("background", "assets/img/Background.jpg");
+  PIXI.loader.add("check", "assets/img/Check.png");
+  PIXI.loader.add("wrong", "assets/img/Wrong.png");
   icons.forEach(i => PIXI.loader.add(i.name, `assets/img/icons/${i.file}.png`));
 
   PIXI.loader.load((loader, resources) => {
     textures = {
       background: resources.background.texture,
+      check: resources.background.texture,
+      wrong: resources.background.texture,
+      icons: {},
     };
-    icons.forEach(i => textures[i.name] = resources[i.name].texture);
+    icons.forEach(i => textures.icons[i.name] = resources[i.name].texture);
 
     complete();
   });

@@ -5,7 +5,7 @@ export default class Icon {
     this.name = name;
     this.fresh = fresh;
 
-    this.graphic = new PIXI.Sprite(loader.textures[name]);
+    this.graphic = new PIXI.Sprite(loader.textures.icons[name]);
     this.graphic.width = size;
     this.graphic.height = size;
     this.graphic.interactive = true;
